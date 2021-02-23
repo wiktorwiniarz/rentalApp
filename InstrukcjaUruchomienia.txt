@@ -3,7 +3,7 @@ Aby uruchomiæ aplikacjê internetow¹ nale¿y:
 	https://www.youtube.com/watch?v=EMLTOMdIz4w oraz zainstalowaæ JDK Java version 1.8
 2.	Zainstalowaæ MySQL link do instrukcji krok po kroku 
 	https://www.youtube.com/watch?v=u96rVINbAUI oraz utworzyæ nowe po³¹czenie 
-	jeœli owego jeszcze nie ma tak jak na filmiku
+	jeœli owego jeszcze nie ma tak jak na filmiku.
 3.	Utworzyæ w MySQL bazê danych o nazwie „rental_app”.
 4.	Uruchomiæ Intellij IDEA oraz otworzyæ projekt poprzez plik „pom.xml”, 
 	który znajduje siê w folderze œci¹gniêtym z GitHub œcie¿ka.
