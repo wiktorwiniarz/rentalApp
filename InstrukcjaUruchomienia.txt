@@ -1,0 +1,20 @@
+Aby uruchomiæ aplikacjê internetow¹ nale¿y:
+1.	Zainstalowaæ Intellij IDEA Community link do instrukcji krok po kroku 
+	https://www.youtube.com/watch?v=EMLTOMdIz4w oraz zainstalowaæ JDK Java version 1.8
+2.	Zainstalowaæ MySQL link do instrukcji krok po kroku 
+	https://www.youtube.com/watch?v=u96rVINbAUI oraz utworzyæ nowe po³¹czenie 
+	jeœli owego jeszcze nie ma tak jak na filmiku
+3.	Utworzyæ w MySQL bazê danych o nazwie „rental_app”.
+4.	Uruchomiæ Intellij IDEA oraz otworzyæ projekt poprzez plik „pom.xml”, 
+	który znajduje siê w folderze œci¹gniêtym z GitHub œcie¿ka.
+5.	W Intellij IDEA w pliku aplication.properties zmieniæ w url. kana³
+	na odpowiedni localhost utworzonego po³¹czenienia z punktu 2 na jakim 
+	utworzona jest baza ( standardowo jest to kana³ 3306), 
+	oraz podaæ nazwê u¿ytkownika i has³o odpowiadaj¹ce po³¹czeniu z punktu 2.
+6.	Uruchomiæ aplikacje poprzez zielon¹ strza³kê w górnym prawym rogu/
+7.	Uruchomiæ przegl¹darkê, nastêpnie podaæ link http://localhost:8080/warehouseItemList
+8.	Aby zalogowaæ siê na administratora nale¿y podaæ login: a@a oraz has³o: aaa
+9.	Po poprawnym w³¹czeniu aplikacji nale¿y zmieniæ dane w application.properties
+	z create-drop na update aby dane by³y aktualizowane i ca³a baza danych nie tworzy³a siê na nowo,
+	dodatkowo podczas tej czynnoœci nale¿y zakomentowaæ ca³¹ klasê „InitDataLoader,
+	które znajduje siê w projekcie (com.winiarz.rental.service.InitDataLoader).
