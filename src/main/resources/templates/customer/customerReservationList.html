@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RentalApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css" rel="stylesheet">
+</head>
+
+<body style="background-size: cover; background-image: url('/img/creamyPage.png')">
+
+<!--<body>-->
+<h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-lower" style="color: #4e555b">Wypożyczalnia turystyczna</span>
+    <span class="site-heading-upper text-primary mb-3">Odpocznij i spełniaj marzenia</span>
+
+</h1>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/warehouseItemList">Wypożyczalnia</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/customerShoppingCart">Koszyk</a>
+                </li>
+
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Lista rezerwacji</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/customerAccount">Moje konto</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/dataPrivacy">Regulamin</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/contact">Kontakt</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="page-section" style="margin-left: 5%; margin-right: 5%">
+    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Przedmiot</th>
+                <th>Cena całkowita</th>
+                <th>Od</th>
+                <th>Do</th>
+                <th>Status</th>
+            </tr>
+            <tr th:each="order : ${userOrderList}">
+                <td th:text="${order.warehouseItem.name}"></td>
+                <td th:text="${order.totalPrice}"></td>
+                <td th:text="${order.fromDate}"></td>
+                <td th:text="${order.toDate}"></td>
+                <td th:text="${order.status.name()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

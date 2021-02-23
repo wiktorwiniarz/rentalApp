@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RentalApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background-size: cover; background-image: url('/img/creamyPage.png')">
+<!--<body>-->
+<h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-lower" style="color: #4e555b">Wypożyczalnia turystyczna</span>
+    <span class="site-heading-upper text-primary mb-3">Odpocznij i spełniaj marzenia</span>
+
+</h1>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto" th:if="${session.user == null}">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/warehouseItemList">Wypożyczalnia</a>
+                </li>
+
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Regulamin</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/contact">Kontakt</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/login">Logowanie</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/register">Rejestracja</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mx-auto" th:if="${session.user != null && session.user.role.name().equals('CUSTOMER')}">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/warehouseItemList">Wypożyczalnia</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/customerShoppingCart">Koszyk</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/customerReservationList">Lista rezerwacji</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/customerAccount">Moje konto</a>
+                </li>
+
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Regulamin</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/contact">Kontakt</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mx-auto" th:if="${session.user != null && session.user.role.name().equals('ADMIN')}">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/register">Rejestracja</a>
+                </li>
+
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Regulamin</a>
+                </li>
+
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="page-section" style="margin-left: 5%; margin-right: 5%">
+    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <textarea class="form-control" rows="90" cols="50" readonly>
+            Regulamin*
+            *Na potrzeby projektu regulamin został zaczerpnięty ze strony: https://client4711.idosell.com/widget2/user-edit.php?register=true.
+            Dane zawarte w regulaminie są danymi fikcyjnymi.
+            Po zakończeniu projektu całość zostanie usunięta.
+            §1 Warunki wypożyczenia sprzętu.
+            1. Podstawą wynajęcia sprzętu jest zawarcie umowy wypożyczenia pomiędzy prowadzącym działalność gospodarczą osobą Janem Kowalskim pod nazwą Wypożyczalnia Turystyczna o nr NIP 111-111-11-11
+                zwaną w dalszej części Wypożyczalnią, a osobą lub firmą wypożyczającą zwaną w dalszej części Wypożyczającym.
+            2. Umowa spisywana jest przez Wypożyczalnię na podstawie ważnego dokumentu ze zdjęciem, na czas określony podany przez Wypożyczającego.
+            3. Rezerwację uważa się za potwierdzoną z chwilą dokonania płatności wymaganej przedpłaty w wysokości i terminie wskazanym w cenniku lub e-mailowym potwierdzeniu rezerwacji.
+            4. Rezerwację należy opłacić przez stronę internetową Wypożyczalni, gotówką przy odbiorze osobistym lub na konto
+            Jan Kowalski 11 1111 1001 0000 1111 1111 1111
+            5. Niewpłacenie przedpłaty w wymaganym terminie powoduje automatyczne anulowanie rezerwacji. W przypadku anulowania rezerwacji wniesiona przedpłata nie podlega zwrotowi.
+            6. Anulowanie lub zmiana rezerwacji są możliwe poprzez stronę internetową lub przez kontakt z Obsługą.
+            7. Podczas wypożyczania zostaje pobrana kaucja zwrotna, która jest ewentualnym zabezpieczeniem dla Wypożyczalni w przypadku wynikłych strat, uszkodzeń, kradzieży lub dewastacji podczas
+                eksploatacji sprzętu.
+            8. O wysokość kwoty pobieranego depozytu decyduje wartość wypożyczanego sprzętu.
+            9. Wysokość stawki dziennej jest regulowana w zależności od długości najmu, zgodnie z cennikiem. W niektórych przypadkach Obsługa może podjąć decyzję o obniżeniu stawki kaucji lub całkowitym jej
+                zniesieniu.
+            10. Jeśli odbiór sprzętu następuje po godzinie 15:00 opłata za dany dzień nie będzie naliczana (obsługa skoryguje koszt przy wydawaniu sprzętu). W soboty po godzinie 13:00.
+            11. Przy wypożyczeniu na więcej niż 1 dzień opłata za dzień, w którym zwrot nastąpi do godziny 12:00 nie jest naliczana. W niedzielę wypożyczalnia jest nieczynna.
+            12. Opłata jest ustalona za czas wynajmu i nie uwzględnia faktycznego czasu użytkowania.
+            13. Wypożyczany sprzęt jest w pełni sprawny technicznie.
+            14. Wypożyczalnia nie ponosi odpowiedzialności za skutki uboczne i/lub następstwa awarii urządzenia jak: uszkodzenia ciała, straty materialne, utrata przewidywanych zysków.
+            15. Faktury będą wystawiane na koniec okresu wypożyczenia.
+
+            §2 Zobowiązania Wypożyczalni.
+
+            1. Wypożyczalnia oświadcza, że sprzęt, będący przedmiotem umowy jest w dobrym stanie technicznym, przydatnym do umówionego użytku, bez żadnych wad.
+            2. Przed każdym wypożyczeniem sprzętu Wypożyczalnia ma obowiązek zapoznać Wypożyczającego z instrukcją obsługi i przeszkolić go w zakresie bezpiecznego użytkowania najmowanego sprzętu, jeśli
+                Wypożyczający wyrazi taką wolę.
+            3. Wypożyczalnia nie ponosi żadnej odpowiedzialności za wypadki i ewentualne szkody powstałe w czasie użytkowania sprzętu.
+            4. Wypożyczalnia zobowiązuje się do ochrony danych osobowych Wypożyczającego i nie przekazywania ich osobom trzecim bez wyraźnej zgody Wypożyczającego.
+
+            §3 Zobowiązania Wypożyczającego.
+
+            1. Wypożyczający przyjmuje do użytku sprzęt będący własnością Wypożyczalni, z obowiązkiem zwrotu w stanie nie pogorszonym ponad normalne zużycie.
+            2. Wypożyczający oświadcza, że zna instrukcją obsługi i posiada przeszkolenie w zakresie bezpiecznego użytkowania najmowanego sprzętu.
+            3. Wypożyczający ma obowiązek sprawdzenia stanu technicznego przedmiotów najmu i zgłoszenie wszelkich uszkodzeń przed odebraniem sprzętu z Wypożyczalni.
+            4. Wypożyczający zobowiązuje się wnieść opłatę w wysokości wynikającej z przemnożenia ilości dni/godzin najmu przez stawki według obowiązującego cennika. W przypadku zwłoki w płatności,
+                Wypożyczalnia uprawniona jest do żądania ustawowych odsetek.
+            5. Wypożyczający zobowiązuje się, iż wynajęty sprzęt będzie użytkował zgodnie z jego przeznaczeniem, nie będzie dokonywał napraw bez wiedzy i zgody Wypożyczalni.
+            6. Od chwili odbioru sprzętu od Wypożyczalni do momentu jego zwrotu Wypożyczający ponosi odpowiedzialność za jego zaginięcie lub uszkodzenie, kradzież lub dewastacje. Wypożyczający ma obowiązek
+                bezzwłocznie zgłosić organom ścigania fakt zaginięcia przedmiotu wypożyczenia.
+            7. W przypadku zaginięcia lub utraty sprzętu Wypożyczający zobowiązany jest do wyrównania strat Wypożyczalni w wysokości wartości rynkowej sprzętu najmu lub odpowiedniej części jego wartości
+                w przypadku uszkodzenia.
+            8. W przypadku uszkodzenia wypożyczonego sprzętu Wypożyczający pokrywa wszystkie koszty związane z jego naprawą na podstawie rachunku przedstawionego przez Wypożyczalnię. Czas naprawy
+                sprzętu liczy się jako czas wypożyczenia ze wszystkimi skutkami finansowymi.
+            9. Skutki uszkodzeń, awarii i strat powstałe przez nieprzestrzeganie instrukcji obsługi, zasad bezpieczeństwa i dobrych praktyk będą obciążały Wypożyczającego.
+            10. Odpowiedzialność za szkody wobec osób trzecich powstałe w skutek użytkowania przedmiotu najmu przez Wypożyczającego ponosi Wypożyczający.
+            11. Wypożyczający zrzeka się wszelkich roszczeń wobec Wypożyczalni z tytułu wypadków, poniesionych szkód lub obrażeń powstałych w trakcie korzystania z wypożyczonego sprzętu.
+            12. Osoba dokonująca rezerwacji online ponosi odpowiedzialność za prawidłowość danych podanych w formularzu rezerwacyjnym. Wypożyczalnia nie ponosi odpowiedzialności za nieprawidłowy wybór
+                terminu pobytu lub błędnie wprowadzone dane w formularzu. W przypadku stwierdzenia nieprawidłowości, których nie można skorygować poprzez edycję rezerwacji, prosimy o pilny kontakt z Obsługą.
+                Dane kontaktowe dostępne są w zakładce „Kontakt”.
+            13. Koszty transportu ponosi Wypożyczający.
+
+            §4 Zwrot sprzętu.
+
+            1. Wypożyczający zobowiązuje się zwrócić przedmiot wypożyczenia w ustalonym w umowie terminie zwrotu. W przypadku nie dotrzymania terminu oddania sprzętu do Wypożyczalni, Wypożyczający
+                zostanie obciążony dodatkową płatnością za kolejne dni wypożyczenia
+            - według cennika w przypadku telefonicznego uzgodnienia z Wypożyczalnią przedłużonego terminu zwrotu sprzętu,
+            - według stawek zawartych w cenniku zwiększonych o 50% przy samowolnym wydłużeniu okresu wypożyczenia.
+            2. Zwrócony sprzęt powinien być kompletny, w pełni sprawny, wolny od wszelkich wad i oczyszczony.
+            3. W przypadku zwrotu nieoczyszczonego przedmiotu najmu, Wypożyczający poniesie koszty czyszczenia w wysokości wypożyczenia sprzętu na 2 dni.
+            §5 Zerwanie umowy wypożyczenia.
+            1. Zerwanie umowy wypożyczenia następuje w przypadku używania wynajętego sprzętu niezgodnie z przeznaczeniem i zasadami dobrej praktyki.
+            2. Zerwanie umowy powoduje rygor natychmiastowego zwrotu wynajętego przedmiotu.
+            §6 Dane osobowe
+            1. Administratorem Twoich danych jest prowadzący działalność gospodarczą Jan Kowalski,
+            z siedzibą przy ul. Kowalskiego 36/11, 11-111 Rzeszów o numerze NIP 1111111111 . Z administratorem danych można się skontaktować poprzez adres e-mail:daneosobowe@gmail.com, telefonicznie
+                pod numerem +48 111 111 111 lub pisemnie na w/w adres siedziby.
+            2. Twoje dane będą przetwarzane w celu zawarcia umowy najmu sprzętu turystycznego. Treści marketingowe będę dostarczane w formie wiadomości e-mail. Podstawą prawną przetwarzania danych
+                osobowych jest art. 6 ust.1 lit. a) RODO, tj. wcześniejsze wyrażenie zgody na przetwarzanie Twoich danych osobowych oraz art. 6 ust. 2 lit. f) RODO, tj. niezbędność przetwarzania
+                do realizacji prawnie uzasadnionego interesu administratora.
+            3.Przetwarzanie danych osobowych obejmuje następujące kategorie Twoich danych: imię i nazwisko, dane kontaktowe (adres, nr telefonu, e-mail).
+            4.Twoje dane osobowe mogą być przekazywane firmom kurierskim w celu realizacji przesyłki wynajmowanego sprzętu.
+            5. Twoje dane osobowe będą przetwarzane i przechowywane przez okres istnienia prawnie uzasadnionego interesu administratora (minimum 3 lata), chyba że wyrazisz sprzeciw wobec przetwarzania
+                danych w celu marketingowym.
+            6. Uprzejmie informujemy, iż przysługują Ci następujące uprawnienia związane z przetwarzaniem przez Twoich danych osobowych:
+            a) prawo do żądania od administratora dostępu do swoich danych osobowych;
+            b) prawo do usunięcia i sprostowania danych;
+            c) prawo do ograniczenia przetwarzania;
+            d) prawo do przenoszenia danych (o ile będzie to technicznie możliwe);
+            7. Masz prawo do wycofania zgody w dowolnym momencie. Zgodę możesz odwołać, poprzez wysłanie stosownej wiadomości e-mail na adres: daneosobowe@gmail.com
+            8. Dodatkowo masz prawo wniesienia skargi do organu nadzorczego zajmującego się ochroną danych osobowych w państwie członkowskim Twojego zwykłego pobytu, miejsca pracy lub miejsca popełnienia
+                domniemanego naruszenia.
+            9. Informujemy, iż Twoje dane zostały uzyskane przez administratora bezpośrednio od Ciebie, podczas wypełniania formularza umowy najmu, wypełniania formularza rezerwacji na stronie internetowej
+                wypozyczalniaturystyczna.com lub przekazane podczas rozmowy telefonicznej.
+            10. Pragniemy zapewnić, iż administrator danych Jan Kowalski dokłada wszelkich starań, aby zapewnić wszelkie środki fizycznej, technicznej i organizacyjnej ochrony danych osobowych przed ich
+                przypadkowym czy umyślnym zniszczeniem, przypadkową utratą, zmianą, nieuprawnionym ujawnieniem, wykorzystaniem czy dostępem, zgodnie ze wszystkimi obowiązującymi przepisami prawnymi.
+        </textarea>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

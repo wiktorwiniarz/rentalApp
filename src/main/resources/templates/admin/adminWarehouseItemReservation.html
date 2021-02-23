@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RentalApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background-size: cover; background-image: url('/img/creamyPage.png')">
+<!--<body>-->
+
+<h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-lower" style="color: #4e555b">Wypożyczalnia turystyczna</span>
+    <span class="site-heading-upper text-primary mb-3">Odpocznij i spełniaj marzenia</span>
+</h1>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/adminReservationList">Rezerwacje</a>
+                </li>
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Wypożyczalnia</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/adminShoppingCart">Koszyk</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="page-section" style="margin-left: 5%; margin-right: 5%">
+    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+
+        <form action="/adminWarehouseItemReservation" method="get">
+            <div class="form-group row">
+                <div class="form-group has-default" style="display: inline-block; margin-right: 2%">
+                    <div class="input-group">
+                        <input name="itemName" class="form-control" type="text" minlength="3" maxlength="30"
+                               placeholder="Item name">
+                    </div>
+                </div>
+
+                <div class="form-group has-default" style="display: inline-block; margin-right: 2%">
+                    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row text-center text-lg-left" style="margin-top: 3%">
+            <div class="col-lg-3 col-md-4 col-6" th:each="item : ${itemList}">
+                <center>
+                    <a class="d-block mb-4 h-100">
+                        <img class="img-fluid img-thumbnail" style="width: 300px; height: 200px"
+                             th:src="${item.imageLink}"
+                             alt="Not found">
+
+                        <table class="table table-striped" style="margin-top: 3%">
+                            <tbody>
+                            <tr>
+                                <th>Nazwa</th>
+                                <th>Cena za dzień</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${item.name}"></td>
+                                <td th:text="${item.priceForDay}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </a>
+
+                    <form action="/adminReservation" method="get" style="margin-bottom: 4%">
+                        <input type="hidden" name="warehouseItemId" th:value="${item.id}">
+                        <button type="submit" class="btn btn-primary">Zarezerwuj</button>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

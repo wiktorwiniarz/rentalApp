@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RentalApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background-size: cover; background-image: url('/img/creamyPage.png')">
+<!--<body>-->
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/adminReservationList">Rezerwacje</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/adminWarehouseItemReservation">Wypożyczalnia</a>
+                </li>
+
+                <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded">Koszyk</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="page-section" style="margin-left: 5%; margin-right: 5%">
+    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <label th:text="${'Razem = ' + shoppingCart.totalPrice}"></label>
+        <table class="table table-striped" style="margin-top: 3%">
+            <tbody>
+            <tr>
+                <th>Nazwa</th>
+                <th>Od</th>
+                <th>Do</th>
+                <th>Ilość sztuk</th>
+                <th>Cena wypożyczenia</th>
+                <th>Wysokość kaucji</th>
+                <th>Razem</th>
+                <th></th>
+            </tr>
+            <tr th:each="order: ${shoppingCart.userOrderList}">
+                <th th:text="${order.warehouseItem.name}"></th>
+                <th th:text="${order.fromDate}"></th>
+                <th th:text="${order.toDate}"></th>
+                <th th:text="${order.quantity}"></th>
+                <th th:text="${order.rentalPrice}"></th>
+                <th th:text="${order.bailPrice}"></th>
+                <th th:text="${order.totalPrice}"></th>
+                <th>
+                    <form action="/adminDeleteOrder" method="post"
+                          onsubmit="return confirm('Potrzebne potwierdzenie, jesteś pewien ?');">
+                        <div style="display: inline-block">
+                            <input type="hidden" name="orderId" th:value="${order.id}">
+                            <input type="hidden" name="shoppingCartId" th:value="${shoppingCart.id}">
+                            <button class="btn btn-primary btn-sm" type="submit">Usuń</button>
+                        </div>
+                    </form>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${cannotBeBooked != null && cannotBeBooked.isEmpty() == false}" class="my-4 alert alert-danger" role="alert">
+            Brak towaru w rezerwowanym okresie:
+            <div th:each="order : ${cannotBeBooked}" th:text="${order.warehouseItem.name}"></div>
+        </div>
+
+        <form action="/adminShoppingCart" method="post" th:if="${shoppingCart.userOrderList.isEmpty() == false}">
+            <div style="display: inline-block">
+                <input type="hidden" name="shoppingCartId" th:value="${shoppingCart.id}">
+                <button class="btn btn-primary btn-sm" type="submit">Zarezerwuj</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
